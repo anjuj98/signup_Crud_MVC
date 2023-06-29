@@ -1,0 +1,138 @@
+﻿@model IEnumerable<CRUD_for_signup_using_MVC.Models.User>
+
+@{
+    ViewBag.Title = "Index";
+}
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+
+<h2>Index</h2>
+
+@if (TempData["InfoMessage"] != null)
+{
+    <div class="alert alert-info">
+        <strong>Information ! </strong>@TempData["InfoMessage"]
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span>&times;</span>
+        </button>
+    </div>
+}
+
+else if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success">
+        <strong>Success ! </strong>@TempData["SuccessMessage"]
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span>&times;</span>
+        </button>
+    </div>
+}
+
+else if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger">
+        <strong>Error ! </strong>@TempData["ErrorMessage"]
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span>&times;</span>
+        </button>
+    </div>
+}
+
+
+<p>
+    @Html.ActionLink("Sign Up", "Create", null, new { @class = "btn btn-primary" })
+</p>
+<table class="table table-bordered">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.first_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.last_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.date_of_birth)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.gender)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.phone_number)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.email_address)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.address)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.state)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.city)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.username)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.password)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.profile_photo)
+        </th>
+        <th>Action</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.first_name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.last_name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.date_of_birth)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.gender)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.phone_number)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.email_address)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.address)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.state)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.city)
+            </td>
+            <td >
+                @Html.DisplayFor(modelItem => item.date_of_birth)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.password)
+            </td>
+            <td>
+                <img src="@Url.Content(item.profile_photo)" width="150px" height="100px" />
+            </td>
+
+
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.id }, new { @class = "btn btn-primary", style = "margin-bottom: 10px; width: 100px;" })
+                @Html.ActionLink("Details", "Details", new { id = item.id }, new { @class = "btn btn-success", style = "margin-bottom: 10px; width: 100px;" })
+                @Html.ActionLink("Delete", "Delete", new { id = item.id }, new { @class = "btn btn-danger" ,style = "width: 100px;" })
+            </td>
+
+
+        </tr>
+    }
+
+</table>
